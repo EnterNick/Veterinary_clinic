@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>{{settings.site_title}}</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <a href="/" class="header__logo">
+                    {{settings.site_title}}
+                </a>
+                <p class="header__slogan">{{settings.slogan}}</p>
+                <p class="header__city">{{settings.city}}</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="main__wrapper">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <nav class="footer__nav">
+                    <a href="/advantages" class="footer__link">Преимущества</a>
+                    <a href="/feedbacks" class="footer__link">Отзывы</a>
+                    <a href="/about" class="footer__link">О нас</a>
+                    <a href="/newsletter" class="footer__link">Рассылка</a>
+                </nav>
+
+                <div class="footer__info">
+                    Контактная информация
+                    <div class="footer__c-m-wrapper">
+                        <div class="footer__contacts-wrapper">
+                            <div class="footer__contacts">
+                                +7 919 636-77-33
+                            </div>
+                            <div class="footer__contacts">
+                                alabugaskills@gmail.com
+                            </div>
+                        </div>
+
+                        <div class="footer__medias">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

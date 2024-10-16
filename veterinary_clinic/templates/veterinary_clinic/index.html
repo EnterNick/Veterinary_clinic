@@ -1,0 +1,15 @@
+{% extends "veterinary_clinic/base.html" %}
+
+{% block content %}
+<div class="mainpage">
+    {% if services %}
+    <ul>
+    {% for i in services %}
+        <li>{{i.name}} - {{i.description}}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p class="">No servises are available</p>
+    {% endif %}
+</div>
+{% endblock %}
