@@ -1,5 +1,3 @@
-
-
 """
 Django settings for Vet project.
 
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'veterinary_clinic',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
