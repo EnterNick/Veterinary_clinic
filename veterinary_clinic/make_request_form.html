@@ -1,0 +1,8 @@
+{% extends "veterinary_clinic/base.html" %}
+{% load rest_framework %}
+
+{% block content %}
+<form method="POST">
+    {% render_form serializer template_pack='rest_framework/vertical' %}
+</form>
+{% endblock %}
