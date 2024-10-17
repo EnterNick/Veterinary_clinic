@@ -12,7 +12,8 @@ router.register('users', UserViewSet)
 router.register('groups', GroupViewSet)
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.IndexView.as_view()),
+    path('add_request', views.MakeRequestView.as_view()),
     path('', include(router.urls)),
     path('auth', include('rest_framework.urls', namespace='rest_framework'))
 ]
