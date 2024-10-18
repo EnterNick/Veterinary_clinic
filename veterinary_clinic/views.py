@@ -1,6 +1,9 @@
+import rest_framework.permissions
+from django.db.models import CharField
+from django.shortcuts import redirect
 from rest_framework.response import Response
 
-from .models import Services, Person, Settings
+from .models import Services, Person, Settings, Request
 from django.contrib.auth.models import Group
 from rest_framework import permissions, viewsets, serializers
 from veterinary_clinic.serializes import GroupSerializer, UserSerializer, MakeRequestSerializer
@@ -33,6 +36,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 class MakeRequestView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'veterinary_clinic/make_request_form.html'
+    queryset = Request.objects.all()
 
     def get(self, request):
         serializer = MakeRequestSerializer()
@@ -40,7 +44,9 @@ class MakeRequestView(APIView):
         return Response({'serializer': serializer, 'settings': settings})
 
     def post(self, request):
-        serializer = MakeRequestSerializer()
-        serializer.style['deafult'] = request.user.username
+        serializer = MakeRequestSerializer(data=request.data)
         settings = Settings.objects.first()
-        return Response({'serializer': serializer, 'settings': settings})
+        if serializer.is_valid():
+            return Response({'serializer': serializer, 'settings': settings})
+        serializer.save()
+        return redirect('/')

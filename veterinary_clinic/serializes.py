@@ -22,7 +22,12 @@ class IndexSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['name', 'description', 'vet']
 
 
-class MakeRequestSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    pet_name = serializers.CharField(max_length=100)
+class MakeRequestSerializer(serializers.HyperlinkedModelSerializer):
+    name = serializers.CharField(max_length=100, style={'placeholder': 'Ваше имя и фамилия'})
+    pet_name = serializers.CharField(max_length=100, style={'placeholder': 'Имя вашего любимца :)'})
     service = serializers.ChoiceField([*Services.objects.all()])
+    email = serializers.EmailField(max_length=100, style={'placeholder': 'Email'})
+
+    class Meta:
+        model = Request
+        fields = ['name', 'pet_name', 'service', 'email']
