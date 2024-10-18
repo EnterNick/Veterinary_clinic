@@ -2,7 +2,7 @@ from rest_framework.response import Response
 
 from .models import Services, Person, Settings
 from django.contrib.auth.models import Group
-from rest_framework import permissions, viewsets
+from rest_framework import permissions, viewsets, serializers
 from veterinary_clinic.serializes import GroupSerializer, UserSerializer, MakeRequestSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
@@ -36,12 +36,11 @@ class MakeRequestView(APIView):
 
     def get(self, request):
         serializer = MakeRequestSerializer()
-        serializer.name = request.user.username
         settings = Settings.objects.first()
         return Response({'serializer': serializer, 'settings': settings})
 
     def post(self, request):
         serializer = MakeRequestSerializer()
-        serializer.name = request.user.name
+        serializer.style['deafult'] = request.user.username
         settings = Settings.objects.first()
         return Response({'serializer': serializer, 'settings': settings})

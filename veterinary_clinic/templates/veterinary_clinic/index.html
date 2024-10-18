@@ -3,11 +3,14 @@
 {% block content %}
 <div class="mainpage">
     {% if services %}
-    <ul>
     {% for i in services %}
-        <li>{{i.name}} - {{i.description}}</li>
+        <div class="mainpage__service">
+            <h3 class="mainpage__service-title">{{i.name}} </h3>
+            <p class="mainpage__service-price">3000p.</p>
+            <p class="mainpage__service-description">{{i.description}}</p>
+            <a href="/add_request" class="btn">Записать питомца</a>
+        </div>
     {% endfor %}
-    </ul>
     {% else %}
     <p class="">No servises are available</p>
     {% endif %}

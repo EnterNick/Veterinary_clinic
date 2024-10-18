@@ -1,0 +1,127 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background: url('./cat.jpg') no-repeat center top /cover;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 500;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.marck-script-regular {
+    font-family: "Marck Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lexend-font {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+  
+.btn {
+    color: white;
+    background-color: #0273FF;
+    padding: 16px 33px;
+    border-radius: 60px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+
+    &:hover {
+        color: #0273FF;
+        background-color: #fff;
+        border: 1px solid #0273FF;
+        padding: 15px 32px;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    color: white;
+    background-color: #93d7d6;
+    border-bottom: 2px solid white;
+
+    &__wrapper {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        font-family: "Klee One", cursive;
+        font-size: 25px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.main {
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.mainpage {
+    display: grid;
+    flex-direction: column;
+    gap: 2px;
+    grid-template-columns: 1fr 1fr;
+
+    &__service {
+        padding: 25px;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 30px;
+        flex-direction: column;
+        gap: 30px;
+        align-items: start;
+
+        &-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        &-description {
+            font-size: 14px;
+            font-weight: normal;
+            color: #1B1B29;
+            max-width: 380px;
+        }
+
+        &-price {
+            font-size: 14px;
+            padding: 4px 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #E3E9F0;
+            flex-grow: 0;
+            border-radius: 20px;
+        }
+    }
+}
