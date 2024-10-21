@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.models import Group
 from rest_framework import serializers
 
@@ -23,11 +25,21 @@ class IndexSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MakeRequestSerializer(serializers.HyperlinkedModelSerializer):
-    name = serializers.CharField(max_length=100, style={'placeholder': 'Ваше имя и фамилия'})
-    pet_name = serializers.CharField(max_length=100, style={'placeholder': 'Имя вашего любимца :)'})
-    service = serializers.ChoiceField([*Services.objects.all()])
-    email = serializers.EmailField(max_length=100, style={'placeholder': 'Email'})
+    name = serializers.CharField(
+        max_length=100,
+        style={'template': 'custom_fields/input.html', 'placeholder': 'Ваше имя и фамилия'}
+    )
+    pet_name = serializers.CharField(max_length=100, style={'placeholder': 'Имя вашего любимца :)',
+                                                            'template': 'custom_fields/input.html'})
+    service = serializers.ChoiceField([*Services.objects.all()], style={'template': 'custom_fields/choice.html'})
+    email = serializers.EmailField(max_length=100, style={'placeholder': 'Email',
+                                                          'template': 'custom_fields/input.html'})
+    time = serializers.TimeField(style={'template': 'custom_fields/input.html'})
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print(self.style)
 
     class Meta:
         model = Request
-        fields = ['name', 'pet_name', 'service', 'email']
+        fields = ['name', 'pet_name', 'service', 'email', 'time']
