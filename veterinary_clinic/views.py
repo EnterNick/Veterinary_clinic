@@ -1,3 +1,5 @@
+import datetime
+
 import rest_framework.permissions
 from django.db.models import CharField
 from django.shortcuts import redirect
@@ -39,7 +41,8 @@ class MakeRequestView(APIView):
     queryset = Request.objects.all()
 
     def get(self, request):
-        serializer = MakeRequestSerializer()
+        serializer = MakeRequestSerializer(style={'value': f'{datetime.datetime.now().hour}:'
+                                                           f'{datetime.datetime.now().minute}'})
         settings = Settings.objects.first()
         return Response({'serializer': serializer, 'settings': settings})
 
