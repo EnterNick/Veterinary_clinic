@@ -1,0 +1,5 @@
+<select class="form__input" name="{{ field.name }}" id="">
+    {% for i in field.choices %}
+        <option value="{{i}}">{{i}}</option>
+    {% endfor %}
+</select>

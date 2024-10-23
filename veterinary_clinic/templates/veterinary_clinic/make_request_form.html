@@ -2,10 +2,10 @@
 {% load rest_framework %}
 
 {% block content %}
-<form class="form" method="post">
+<form class="form" method="POST" action="/add_request" >
     <fieldset class="form__fieldset">
         {% csrf_token %}
-        {% render_form serializer template_pack='rest_framework/vertical' %}
+        {% render_form serializer %}
         <button class="btn btn-form" type="submit">Отправить</button>
     </fieldset>
 </form>

@@ -41,15 +41,14 @@ class MakeRequestView(APIView):
     queryset = Request.objects.all()
 
     def get(self, request):
-        serializer = MakeRequestSerializer(style={'value': f'{datetime.datetime.now().hour}:'
-                                                           f'{datetime.datetime.now().minute}'})
+        serializer = MakeRequestSerializer(context={'request': request})
         settings = Settings.objects.first()
         return Response({'serializer': serializer, 'settings': settings})
 
     def post(self, request):
-        serializer = MakeRequestSerializer(data=request.data)
+        serializer = MakeRequestSerializer(data=request.data, context={'request': request})
         settings = Settings.objects.first()
-        if serializer.is_valid():
+        if not serializer.is_valid():
             return Response({'serializer': serializer, 'settings': settings})
         serializer.save()
         return redirect('/')

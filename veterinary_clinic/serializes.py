@@ -35,11 +35,19 @@ class MakeRequestSerializer(serializers.HyperlinkedModelSerializer):
     email = serializers.EmailField(max_length=100, style={'placeholder': 'Email',
                                                           'template': 'custom_fields/input.html'})
     time = serializers.TimeField(style={'template': 'custom_fields/input.html'})
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        print(self.style)
+    date = serializers.DateField(style={'template': 'custom_fields/input.html'})
 
     class Meta:
         model = Request
-        fields = ['name', 'pet_name', 'service', 'email', 'time']
+        fields = ['name', 'pet_name', 'service', 'email', 'time', 'date']
+
+    def validate_date(self, val):
+        if val < datetime.date.today():
+            print('true')
+            raise serializers.ValidationError
+        return val
+
+    def validate_time(self, val):
+        if val < datetime.datetime.now().time():
+            raise serializers.ValidationError
+        return val

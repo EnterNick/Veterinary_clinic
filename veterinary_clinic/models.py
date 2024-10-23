@@ -19,14 +19,13 @@ class Services(models.Model):
 class Request(models.Model):
     name = models.CharField(max_length=100)
     pet_name = models.CharField(max_length=100)
-    requesting = models.ForeignKey(Person, on_delete=models.CASCADE)
     service = models.ForeignKey(Services, on_delete=models.CASCADE, null=True)
     email = models.EmailField()
     time = models.TimeField()
     date = models.DateField()
 
     def __str__(self):
-        return f'Заявка от {self.requesting} ({self.service}'
+        return f'Заявка ({self.service}'
 
 
 class Settings(models.Model):
